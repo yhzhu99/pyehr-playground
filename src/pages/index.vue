@@ -15,7 +15,7 @@ defineOptions({
     <div class="grid-item button grid-item-2">
       <div class="content">
         <h2>COVID-19 EHR Benchmark</h2>
-        <p>Project led by Peking University</p>
+        <img src="/assets/affiliations.png" alt="Project led by Peking University">
       </div>
     </div>
     <router-link to="/performance-all" class="grid-item button grid-item-3">
@@ -24,7 +24,7 @@ defineOptions({
         <p>Includes comprehensive performance details for each fold</p>
       </div>
     </router-link>
-    <a class="grid-item button grid-item-4" href="https://baidu.com" target="_blank">
+    <a class="grid-item button grid-item-4" href="https://drive.google.com/file/d/1Fdt8XUnO3CeJk9mrkPZBk_gUdpCnGFfi/view" target="_blank">
       <div class="content">
         <h2>Checkpoints & Logs</h2>
         <p>Access all model checkpoints and logs via this Google Drive link</p>
@@ -94,5 +94,10 @@ defineOptions({
   font-family: 'Consolas', monospace;
   font-size: 18px;
   color: #666;
+}
+
+.content img {
+  width: 100%;
+  height: auto;
 }
 </style>
