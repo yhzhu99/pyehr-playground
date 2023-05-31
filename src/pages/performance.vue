@@ -1,5 +1,5 @@
 <script setup>
-import performance from '~/assets/performance.json'
+import performance from '~/apis/performance.json'
 
 const tableData = performance
 const currentPage = ref(1)
@@ -48,6 +48,19 @@ function showConfig(row, column, event) {
 
 <template>
   <div text-gray:80>
+    <div my-4>
+      <a href="/assets/performance.csv" download mx-2>
+        <el-button type="primary">
+          Download CSV
+        </el-button>
+      </a>
+      <a href="/assets/performance.tex" download mx-2>
+        <el-button type="success">
+          Download Tex
+        </el-button>
+      </a>
+    </div>
+
     <el-table
       :data="tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
       stripe
@@ -56,12 +69,11 @@ function showConfig(row, column, event) {
       style="width: 100%"
       @row-dblclick="showConfig"
     >
-      <el-table-column prop="id" label="ID" width="50" />
       <el-table-column prop="model" label="Model" />
       <el-table-column prop="fold" label="Fold" />
       <el-table-column prop="auprc" label="AUPRC" />
       <el-table-column prop="auroc" label="AUROC" />
-      <el-table-column prop="acc" label="ACC" />
+      <el-table-column prop="accuracy" label="ACC" />
       <el-table-column prop="es" label="ES" show-overflow-tooltip />
       <el-table-column prop="mae" label="MAE" />
       <el-table-column prop="mse" label="MSE" />
@@ -115,7 +127,7 @@ function showConfig(row, column, event) {
     <div class="pagination-container">
       <el-pagination
         v-model:current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
+        :page-sizes="[10, 15, 20, 30, 40]"
         :page-size="pageSize"
         :total="totalItems"
         layout="total, sizes, prev, pager, next, jumper"
