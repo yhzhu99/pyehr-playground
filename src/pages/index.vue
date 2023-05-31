@@ -6,7 +6,7 @@ defineOptions({
 
 <template>
   <div class="button-container">
-    <router-link to="/performance" class="button">
+    <router-link to="/performance-all" class="button">
       Performance Table
     </router-link>
     <div class="button">
