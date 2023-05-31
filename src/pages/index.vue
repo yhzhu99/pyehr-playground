@@ -16,12 +16,12 @@ function go() {
   <div>
     <div i-carbon-campsite inline-block text-4xl />
     <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
+      <a rel="noreferrer" href="https://github.com/yhzhu99/pyehr" target="_blank">
+        COVID-19 EHR Benchmark
       </a>
     </p>
     <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
+      <em text-sm op75>A Comprehensive Benchmark for COVID-19 Predictive Modeling Using Electronic Health Records in Intensive Care</em>
     </p>
 
     <div py-4 />
