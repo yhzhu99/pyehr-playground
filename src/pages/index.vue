@@ -2,45 +2,40 @@
 defineOptions({
   name: 'IndexPage',
 })
-
-const name = ref('')
-
-const router = useRouter()
-function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
-}
 </script>
 
 <template>
-  <div>
-    <div i-carbon-campsite inline-block text-4xl />
-    <p>
-      <a rel="noreferrer" href="https://github.com/yhzhu99/pyehr" target="_blank">
-        COVID-19 EHR Benchmark
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>A Comprehensive Benchmark for COVID-19 Predictive Modeling Using Electronic Health Records in Intensive Care</em>
-    </p>
-
-    <div py-4 />
-
-    <TheInput
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-
-    <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
-        Go
-      </button>
-    </div>
+  <div class="button-container">
+    <router-link to="/pagea" class="button">
+      Go to Page A
+    </router-link>
+    <router-link to="/pageb" class="button">
+      Go to Page B
+    </router-link>
   </div>
 </template>
+
+<style scoped>
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 60vh;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 25px;
+  color: #333;
+  text-decoration: none;
+  width: 40%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ddd;
+}
+</style>
