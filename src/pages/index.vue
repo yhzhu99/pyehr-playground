@@ -7,11 +7,11 @@ defineOptions({
 <template>
   <div class="button-container">
     <router-link to="/performance" class="button">
-      Go to Page A
+      Performance Table
     </router-link>
-    <router-link to="/predict" class="button">
-      Go to Page B
-    </router-link>
+    <div class="button">
+      Introduction
+    </div>
   </div>
 </template>
 
