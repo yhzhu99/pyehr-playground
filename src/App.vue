@@ -24,7 +24,7 @@
 .header-fixed {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 100000;
   height: 100px;
 }
 
@@ -41,7 +41,7 @@
 .footer-fixed {
   position: sticky;
   bottom: 0;
-  z-index: 100;
+  z-index: 100000;
   height: 80px;
 }
 </style>
