@@ -1,5 +1,5 @@
 <script setup>
-import performance from '~/apis/performance_all.json'
+import performance from '~/apis/performance_10fold.json'
 import hyperparameters from '~/apis/hyperparameters.json'
 
 const router = useRouter()
@@ -77,7 +77,7 @@ function onBack() {
           <div class="flex items-center">
             <span class="text-large mr-3 font-600"> Performance Table </span>
             <el-tag mr-3>
-              All
+              10-Fold
             </el-tag>
             <div text-sm>
               Double-click the row to see the hyperparameters.
@@ -148,7 +148,6 @@ function onBack() {
         :filter-method="filterModel"
         filter-placement="bottom-end"
       />
-      <el-table-column prop="fold" label="Fold" width="50" show-overflow-tooltip />
       <el-table-column prop="auprc" label="AUPRC" show-overflow-tooltip sortable />
       <el-table-column prop="auroc" label="AUROC" show-overflow-tooltip sortable />
       <el-table-column prop="accuracy" label="ACC" show-overflow-tooltip sortable />
@@ -179,6 +178,7 @@ function onBack() {
       <el-table-column
         prop="task"
         label="Task"
+        width="90"
         :filters="[
           { text: 'outcome', value: 'outcome' },
           { text: 'los', value: 'los' },
