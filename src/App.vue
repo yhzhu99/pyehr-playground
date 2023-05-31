@@ -1,16 +1,16 @@
 <template>
   <main font-sans p="x-4" text="center gray-700 dark:gray-200">
-    <el-container class="flex-container">
-      <el-header class="header-fixed">
+    <container class="flex-container">
+      <header class="header-fixed">
         <TheHeader />
-      </el-header>
-      <el-main class="main-content">
+      </header>
+      <main class="main-content">
         <RouterView />
-      </el-main>
-      <el-footer class="footer-fixed">
+      </main>
+      <footer class="footer-fixed">
         <TheFooter />
-      </el-footer>
-    </el-container>
+      </footer>
+    </container>
   </main>
 </template>
 

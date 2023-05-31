@@ -6,10 +6,10 @@ defineOptions({
 
 <template>
   <div class="button-container">
-    <router-link to="/pagea" class="button">
+    <router-link to="/performance" class="button">
       Go to Page A
     </router-link>
-    <router-link to="/pageb" class="button">
+    <router-link to="/predict" class="button">
       Go to Page B
     </router-link>
   </div>
