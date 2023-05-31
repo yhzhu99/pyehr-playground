@@ -2,15 +2,15 @@
 import performance from '~/apis/performance.json'
 
 const tableData = performance
-const currentPage = ref(1)
-const pageSize = ref(10)
-const totalItems = ref(tableData.length)
-function handleCurrentChange(page) {
-  currentPage.value = page
-}
-function handleSizeChange(size) {
-  pageSize.value = size
-}
+// const currentPage = ref(1)
+// const pageSize = ref(10)
+// const totalItems = ref(tableData.length)
+// function handleCurrentChange(page) {
+//   currentPage.value = page
+// }
+// function handleSizeChange(size) {
+//   pageSize.value = size
+// }
 
 function filterTask(value, row) {
   return row.task === value
@@ -62,7 +62,7 @@ function showConfig(row, column, event) {
     </div>
 
     <el-table
-      :data="tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
+      :data="tableData"
       stripe
       size="small"
       border
@@ -124,7 +124,7 @@ function showConfig(row, column, event) {
       </el-table-column>
     </el-table>
 
-    <div class="pagination-container">
+    <!-- <div class="pagination-container">
       <el-pagination
         v-model:current-page="currentPage"
         :page-sizes="[10, 15, 20, 30, 40]"
@@ -134,14 +134,14 @@ function showConfig(row, column, event) {
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 .pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-</style>
+</style> -->
