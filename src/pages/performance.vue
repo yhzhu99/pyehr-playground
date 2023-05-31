@@ -126,14 +126,14 @@ function showConfig(row, column, event) {
         filter-placement="bottom-end"
       />
       <el-table-column prop="fold" label="Fold" show-overflow-tooltip />
-      <el-table-column prop="auprc" label="AUPRC" show-overflow-tooltip />
-      <el-table-column prop="auroc" label="AUROC" show-overflow-tooltip />
-      <el-table-column prop="accuracy" label="ACC" show-overflow-tooltip />
-      <el-table-column prop="es" label="ES" show-overflow-tooltip />
-      <el-table-column prop="mae" label="MAE" show-overflow-tooltip />
-      <el-table-column prop="mse" label="MSE" show-overflow-tooltip />
-      <el-table-column prop="rmse" label="RMSE" show-overflow-tooltip />
-      <el-table-column prop="osmae" label="OSMAE" show-overflow-tooltip />
+      <el-table-column prop="auprc" label="AUPRC" show-overflow-tooltip sortable />
+      <el-table-column prop="auroc" label="AUROC" show-overflow-tooltip sortable />
+      <el-table-column prop="accuracy" label="ACC" show-overflow-tooltip sortable />
+      <el-table-column prop="es" label="ES" show-overflow-tooltip sortable />
+      <el-table-column prop="mae" label="MAE" show-overflow-tooltip sortable />
+      <el-table-column prop="mse" label="MSE" show-overflow-tooltip sortable />
+      <el-table-column prop="rmse" label="RMSE" show-overflow-tooltip sortable />
+      <el-table-column prop="osmae" label="OSMAE" show-overflow-tooltip sortable />
       <el-table-column
         prop="dataset"
         label="Dataset"
