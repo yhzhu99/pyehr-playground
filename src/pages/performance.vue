@@ -8,7 +8,7 @@ const hyperparametersMap = new Map()
 hyperparameters.forEach((item) => {
   let modelName = item.model
   if (item.time_aware === true)
-    modelName = `${modelName}-ta`
+    modelName = `${modelName}-TA`
 
   hyperparametersMap.set(`${modelName}+${item.dataset}+${item.task}`, item)
 })
@@ -48,7 +48,7 @@ function filterDataset(value, row) {
 function showConfig(row, column, event) {
   let modelName = row.model
   if (row.time_aware === true)
-    modelName = `${modelName}-ta`
+    modelName = `${modelName}-TA`
 
   const hparam = hyperparametersMap.get(`${modelName}+${row.dataset}+${row.task}`)
   // console.log(hyperparametersMap.value)
