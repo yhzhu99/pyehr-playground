@@ -5,37 +5,92 @@ defineOptions({
 </script>
 
 <template>
-  <div class="button-container">
-    <router-link to="/performance-all" class="button">
-      Performance Table
+  <div class="grid-container">
+    <router-link to="/performance-10fold" class="grid-item grid-item-1 button">
+      <div class="content">
+        <h2>Performance Table</h2>
+        <p>Provides the average score across all folds</p>
+      </div>
     </router-link>
-    <div class="button">
-      Introduction
+    <div class="grid-item grid-item-2">
+      <div class="content">
+        <h2>COVID-19 EHR Benchmark</h2>
+        <p>Project led by Peking University</p>
+      </div>
     </div>
+    <router-link to="/performance-all" class="grid-item button grid-item-3">
+      <div class="content">
+        <h2>Performance Table</h2>
+        <p>Includes comprehensive performance details for each fold</p>
+      </div>
+    </router-link>
+    <a class="grid-item button grid-item-4" href="https://baidu.com" target="_blank">
+      <div class="content">
+        <h2>Checkpoints & Logs</h2>
+        <p>Access all model checkpoints and logs via this Google Drive link</p>
+      </div>
+    </a>
   </div>
 </template>
 
 <style scoped>
-.button-container {
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 40px;
+  padding: 10px;
+}
+.grid-item {
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 30px; /* adjust this to change the rounded corners */
+  text-align: center;
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  height: 60vh;
-  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.19), 0px 6px 6px rgba(0,0,0,0.23);
 }
 
-.button {
-  padding: 20px;
-  background: #f0f0f0;
-  border-radius: 25px;
-  color: #333;
-  text-decoration: none;
-  width: 40%;
+.content {
   text-align: center;
-  transition: background-color 0.3s ease;
+}
+
+.grid-item-1 {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: #ffbcc2; /* red */
+}
+
+.grid-item-2 {
+  grid-area: 1 / 2 / 2 / 3;
+  background-color: #8fd4eb; /* orange */
+}
+
+.grid-item-3 {
+  grid-area: 2 / 1 / 3 / 2;
+  background-color: #aafec2; /* peach */
+}
+
+.grid-item-4 {
+  grid-area: 2 / 2 / 3 / 3;
+  background-color: #ffdc8b; /* green */
 }
 
 .button:hover {
-  background-color: #ddd;
+  background-color: #fffd9d; /* light teal */
+  cursor: pointer;
+}
+
+.content h2 {
+  font-family: 'Consolas', monospace;
+  font-size: 24px;
+  color: #333;
+}
+
+.content p {
+  font-family: 'Consolas', monospace;
+  font-size: 18px;
+  color: #666;
 }
 </style>
