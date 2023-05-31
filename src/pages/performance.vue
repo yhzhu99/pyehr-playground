@@ -8,7 +8,7 @@ const hyperparametersMap = new Map()
 hyperparameters.forEach((item) => {
   let modelName = item.model
   if (item.time_aware === true)
-    modelName = `${modelName}-TA`
+    modelName = `${modelName}-ta`
 
   hyperparametersMap.set(`${modelName}+${item.dataset}+${item.task}`, item)
 })
@@ -22,6 +22,10 @@ hyperparameters.forEach((item) => {
 // function handleSizeChange(size) {
 //   pageSize.value = size
 // }
+
+function filterModel(value, row) {
+  return row.model === value
+}
 
 function filterTask(value, row) {
   return row.task === value
@@ -46,11 +50,7 @@ function filterDataset(value, row) {
 }
 
 function showConfig(row, column, event) {
-  let modelName = row.model
-  if (row.time_aware === true)
-    modelName = `${modelName}-TA`
-
-  const hparam = hyperparametersMap.get(`${modelName}+${row.dataset}+${row.task}`)
+  const hparam = hyperparametersMap.get(`${row.model}+${row.dataset}+${row.task}`)
   // console.log(hyperparametersMap.value)
   const msg = `<pre>${JSON.stringify(hparam, null, 4)}</pre>`
   ElMessageBox.alert(
@@ -86,7 +86,45 @@ function showConfig(row, column, event) {
       style="width: 100%"
       @row-dblclick="showConfig"
     >
-      <el-table-column prop="model" label="Model" show-overflow-tooltip />
+      <el-table-column
+        prop="model"
+        label="Model"
+        width="100"
+        :filters="
+          [
+            { text: 'DT', value: 'DT' },
+            { text: 'RF', value: 'RF' },
+            { text: 'GBDT', value: 'GBDT' },
+            { text: 'XGBoost', value: 'XGBoost' },
+            { text: 'CatBoost', value: 'CatBoost' },
+            { text: 'MLP', value: 'MLP' },
+            { text: 'GRU', value: 'GRU' },
+            { text: 'RNN', value: 'RNN' },
+            { text: 'LSTM', value: 'LSTM' },
+            { text: 'TCN', value: 'TCN' },
+            { text: 'Transformer', value: 'Transformer' },
+            { text: 'AdaCare', value: 'AdaCare' },
+            { text: 'Agent', value: 'Agent' },
+            { text: 'StageNet', value: 'StageNet' },
+            { text: 'RETAIN', value: 'RETAIN' },
+            { text: 'GRASP', value: 'GRASP' },
+            { text: 'MCGRU', value: 'MCGRU' },
+            { text: 'MLP-ta', value: 'MLP-ta' },
+            { text: 'GRU-ta', value: 'GRU-ta' },
+            { text: 'RNN-ta', value: 'RNN-ta' },
+            { text: 'LSTM-ta', value: 'LSTM-ta' },
+            { text: 'TCN-ta', value: 'TCN-ta' },
+            { text: 'Transformer-ta', value: 'Transformer-ta' },
+            { text: 'AdaCare-ta', value: 'AdaCare-ta' },
+            { text: 'Agent-ta', value: 'Agent-ta' },
+            { text: 'StageNet-ta', value: 'StageNet-ta' },
+            { text: 'RETAIN-ta', value: 'RETAIN-ta' },
+            { text: 'GRASP-ta', value: 'GRASP-ta' },
+            { text: 'MCGRU-ta', value: 'MCGRU-ta' },
+          ]"
+        :filter-method="filterModel"
+        filter-placement="bottom-end"
+      />
       <el-table-column prop="fold" label="Fold" show-overflow-tooltip />
       <el-table-column prop="auprc" label="AUPRC" show-overflow-tooltip />
       <el-table-column prop="auroc" label="AUROC" show-overflow-tooltip />
@@ -99,7 +137,6 @@ function showConfig(row, column, event) {
       <el-table-column
         prop="dataset"
         label="Dataset"
-        width="100"
         :filters="[
           { text: 'tjh', value: 'tjh' },
           { text: 'cdsl', value: 'cdsl' },
