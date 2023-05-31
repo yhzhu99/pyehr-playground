@@ -179,6 +179,7 @@ function onBack() {
       <el-table-column
         prop="task"
         label="Task"
+        width="90"
         :filters="[
           { text: 'outcome', value: 'outcome' },
           { text: 'los', value: 'los' },
