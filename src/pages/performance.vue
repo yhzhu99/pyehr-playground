@@ -64,7 +64,7 @@ function showConfig(row, column, event) {
 </script>
 
 <template>
-  <div text-gray:80>
+  <div h-full text-gray:80>
     <div my-4>
       <a href="/assets/performance.csv" download mx-2>
         <el-button type="primary">
