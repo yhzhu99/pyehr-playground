@@ -12,7 +12,7 @@ defineOptions({
         <p>Provides the average score across all folds</p>
       </div>
     </router-link>
-    <div class="grid-item grid-item-2">
+    <div class="grid-item button grid-item-2">
       <div class="content">
         <h2>COVID-19 EHR Benchmark</h2>
         <p>Project led by Peking University</p>
@@ -50,7 +50,8 @@ defineOptions({
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.19), 0px 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .content {
@@ -78,7 +79,8 @@ defineOptions({
 }
 
 .button:hover {
-  background-color: #fffd9d; /* light teal */
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
