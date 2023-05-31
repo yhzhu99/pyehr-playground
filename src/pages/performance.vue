@@ -1,6 +1,8 @@
 <script setup>
-import performance from '~/apis/performance.json'
+import performance from '~/apis/performance_all.json'
 import hyperparameters from '~/apis/hyperparameters.json'
+
+const router = useRouter()
 
 const tableData = performance
 const hyperparametersMap = new Map()
@@ -55,27 +57,48 @@ function showConfig(row, column, event) {
   const msg = `<pre>${JSON.stringify(hparam, null, 4)}</pre>`
   ElMessageBox.alert(
     msg,
-    'Config Detail',
+    'Configuration Detail',
     {
       dangerouslyUseHTMLString: true,
     },
   )
+}
+
+function onBack() {
+  router.push('/')
 }
 </script>
 
 <template>
   <div h-full text-gray:80>
     <div my-4>
-      <a href="/assets/performance.csv" download mx-2>
-        <el-button type="primary">
-          Download CSV
-        </el-button>
-      </a>
-      <a href="/assets/performance.tex" download mx-2>
-        <el-button type="success">
-          Download Tex
-        </el-button>
-      </a>
+      <el-page-header :icon="null" @back="onBack">
+        <template #content>
+          <div class="flex items-center">
+            <span class="text-large mr-3 font-600"> Performance Table </span>
+            <el-tag mr-3>
+              All
+            </el-tag>
+            <div text-sm>
+              Double-click the row to see the hyperparameters.
+            </div>
+          </div>
+        </template>
+        <template #extra>
+          <div class="flex items-center">
+            <a href="/assets/performance.csv" download mx-2>
+              <el-button type="primary">
+                Download CSV
+              </el-button>
+            </a>
+            <a href="/assets/performance.tex" download mx-2>
+              <el-button type="success">
+                Download Tex
+              </el-button>
+            </a>
+          </div>
+        </template>
+      </el-page-header>
     </div>
 
     <el-table
@@ -125,14 +148,13 @@ function showConfig(row, column, event) {
         :filter-method="filterModel"
         filter-placement="bottom-end"
       />
-      <el-table-column prop="fold" label="Fold" show-overflow-tooltip />
+      <el-table-column prop="fold" label="Fold" width="50" show-overflow-tooltip />
       <el-table-column prop="auprc" label="AUPRC" show-overflow-tooltip sortable />
       <el-table-column prop="auroc" label="AUROC" show-overflow-tooltip sortable />
       <el-table-column prop="accuracy" label="ACC" show-overflow-tooltip sortable />
       <el-table-column prop="es" label="ES" show-overflow-tooltip sortable />
       <el-table-column prop="mae" label="MAE" show-overflow-tooltip sortable />
       <el-table-column prop="mse" label="MSE" show-overflow-tooltip sortable />
-      <el-table-column prop="rmse" label="RMSE" show-overflow-tooltip sortable />
       <el-table-column prop="osmae" label="OSMAE" show-overflow-tooltip sortable />
       <el-table-column
         prop="dataset"
@@ -157,7 +179,6 @@ function showConfig(row, column, event) {
       <el-table-column
         prop="task"
         label="Task"
-        width="100"
         :filters="[
           { text: 'outcome', value: 'outcome' },
           { text: 'los', value: 'los' },
