@@ -12,12 +12,12 @@ defineOptions({
         <p>Provides the average score across all folds</p>
       </div>
     </router-link>
-    <div class="grid-item button grid-item-2" href="https://github.com/yhzhu99/pyehr" target="_blank">
+    <a class="grid-item button grid-item-2" href="https://github.com/yhzhu99/pyehr" target="_blank">
       <div class="content">
         <h2>COVID-19 EHR Benchmark</h2>
         <img src="/assets/affiliations.png" alt="Project led by Peking University">
       </div>
-    </div>
+    </a>
     <router-link to="/performance-all" class="grid-item button grid-item-3">
       <div class="content">
         <h2>Performance Table</h2>
