@@ -1,0 +1,114 @@
+\section{Results}
+
+In this section, we present comprehensive benchmarking results of all predictive models across all datasets and tasks.
+
+\subsection{Benchmarking performance of early mortality prediction}
+
+The comparative performances of the models in early mortality prediction are presented in Table~\ref{tab:early_motality_benchmark}. We also introduced the time-aware loss, labeling these adjusted models with a `-TA' suffix for all deep learning models. For the TJH dataset, the AdaCare-TA model delivered the highest AUPRC and AUROC, while Dr. Agent provided the highest ES. In contrast, for the \textcolor{red}{CDSL} dataset, ConCare-TA achieved the highest AUPRC, while StageNet-TA produced the highest AUROC and ES. Among traditional machine learning and basic deep learning models, CatBoost and GRU showed better performance on both datasets.
+
+The results indicate that the proposed time-aware loss term can enhance the performance of most models, particularly in terms of the early prediction score. The average improvement of the ES score is 1.93\% for the \textcolor{blue}{TJH} dataset and 33.58\% for the \textcolor{red}{CDSL} dataset. This underscores that this simplistic loss term can effectively aid models in making correct early decisions. Additionally, we observe that for the \textcolor{blue}{TJH} dataset, the performance of all models was higher, especially for the ES, suggesting that the task is more straightforward on this dataset. Patients' initial status was also more severe in the \textcolor{blue}{TJH} dataset, resulting in a much higher ES than in the \textcolor{red}{CDSL} dataset. This might be attributable to the fact that the \textcolor{blue}{TJH} data was collected during the initial months of the pandemic when the virus was significantly more lethal. The performance of EHR-specific models generally surpasses that of basic deep learning models, which in turn outperform traditional machine learning models. This is to be expected, as most EHR-specific models are better equipped to utilize characteristics present in EHR data, such as disease progression, while compared with deep learning models, traditional machine learning models are unable to leverage temporal relationships in sequential data.
+
+
+\begin{table}[h!]
+    \footnotesize
+    \centering
+    \caption{\textit{Benchmarking performance on the task of early mortality prediction}. The reported score is of the form $mean \pm std$. `TA' denotes the model trained with the time-aware loss. \textbf{Bold} denotes the highest performance. \underline{Underline} indicates that the model with time-aware loss outperforms the original model. All three metrics are multiplied by 100 for readability purposes.}
+    \label{tab:early_motality_benchmark}
+    \resizebox{1\textwidth}{!}{
+\begin{tabular}{l|ccc|ccc}
+\toprule
+Dataset & \multicolumn{3}{c}{TJH} & \multicolumn{3}{|c}{CDSL} \\
+    \midrule
+    Metric & AUPRC($\uparrow$) & AUROC($\uparrow$) & ES($\uparrow$) & AUPRC($\uparrow$) & AUROC($\uparrow$) & ES($\uparrow$) \\ 
+\midrule
+RF & 95.56 $\pm$ 2.69 & 96.58 $\pm$ 2.20 & 72.63 $\pm$ 9.15 & 49.48 $\pm$ 3.79 & 84.35 $\pm$ 2.66 & -10.54 $\pm$ 3.57 \\ 
+DT & 80.48 $\pm$ 7.26 & 87.41 $\pm$ 3.99 & 67.86 $\pm$ 11.24 & 38.27 $\pm$ 5.21 & 79.67 $\pm$ 4.61 & -8.23 $\pm$ 4.17 \\ 
+GBDT & 95.13 $\pm$ 3.51 & 96.41 $\pm$ 2.35 & 76.45 $\pm$ 7.13 & 50.32 $\pm$ 5.15 & 85.15 $\pm$ 2.83 & 2.25 $\pm$ 4.86 \\ 
+CatBoost & 95.99 $\pm$ 2.61 & 97.14 $\pm$ 1.81 & 74.91 $\pm$ 9.00 & 50.86 $\pm$ 4.34 & 85.09 $\pm$ 2.86 & -3.94 $\pm$ 3.89 \\ 
+XGBoost & 95.70 $\pm$ 2.98 & 96.84 $\pm$ 2.09 & 76.41 $\pm$ 9.90 & 49.70 $\pm$ 5.06 & 84.59 $\pm$ 3.09 & -3.12 $\pm$ 4.44 \\ 
+\midrule
+\midrule
+MLP & 93.78 $\pm$ 2.80 & 95.95 $\pm$ 1.62 & 72.87 $\pm$ 8.22 & 48.60 $\pm$ 3.57 & 84.15 $\pm$ 2.72 & -0.76 $\pm$ 3.95 \\ 
+MLP-TA & 93.21 $\pm$ 2.78 & 95.65 $\pm$ 1.85 & \underline{73.94 $\pm$ 8.96} & \underline{48.67 $\pm$ 3.07} & \underline{84.24 $\pm$ 2.56} & \underline{0.55 $\pm$ 3.71} \\ 
+RNN & 96.03 $\pm$ 3.42 & 97.41 $\pm$ 2.19 & 78.33 $\pm$ 11.35 & 57.57 $\pm$ 6.55 & 87.81 $\pm$ 2.55 & 19.66 $\pm$ 8.86 \\ 
+RNN-TA & 95.97 $\pm$ 3.65 & 97.38 $\pm$ 2.29 & \underline{79.79 $\pm$ 11.06} & \underline{58.21 $\pm$ 6.34} & \underline{88.01 $\pm$ 2.36} & \underline{20.15 $\pm$ 11.25} \\ 
+LSTM & 94.82 $\pm$ 7.65 & 97.08 $\pm$ 3.65 & 84.80 $\pm$ 10.68 & 55.53 $\pm$ 8.54 & 87.02 $\pm$ 3.01 & 19.63 $\pm$ 11.41 \\ 
+LSTM-TA & \underline{95.40 $\pm$ 5.53} & \underline{97.10 $\pm$ 3.05} & 83.78 $\pm$ 8.30 & \underline{56.89 $\pm$ 7.34} & \underline{87.76 $\pm$ 2.50} & \underline{20.92 $\pm$ 13.10} \\ 
+GRU & 96.33 $\pm$ 3.18 & 97.59 $\pm$ 2.13 & 78.33 $\pm$ 15.45 & 56.78 $\pm$ 8.02 & 87.93 $\pm$ 2.89 & 21.66 $\pm$ 8.86 \\ 
+GRU-TA & \underline{96.50 $\pm$ 3.04} & \underline{97.70 $\pm$ 2.06} & \underline{80.93 $\pm$ 13.84} & \underline{57.75 $\pm$ 5.36} & \textbf{\underline{87.98 $\pm$ 2.62}} & \underline{23.54 $\pm$ 8.10} \\ 
+TCN & 93.13 $\pm$ 5.10 & 96.39 $\pm$ 1.89 & 74.66 $\pm$ 13.03 & 57.09 $\pm$ 5.84 & 87.40 $\pm$ 2.67 & 13.48 $\pm$ 12.04 \\ 
+TCN-TA & \underline{93.31 $\pm$ 4.97} & \underline{96.74 $\pm$ 1.87} & \underline{76.47 $\pm$ 12.27} & \underline{57.71 $\pm$ 5.72} & \underline{87.59 $\pm$ 2.60} & \underline{21.59 $\pm$ 12.68} \\ 
+Transformer & 93.47 $\pm$ 6.73 & 96.86 $\pm$ 2.13 & 79.21 $\pm$ 13.05 & 38.34 $\pm$ 5.07 & 81.32 $\pm$ 3.46 & -3.96 $\pm$ 13.23 \\ 
+Transformer-TA & \underline{93.86 $\pm$ 6.42} & \underline{97.01 $\pm$ 2.01} & \underline{80.73 $\pm$ 12.47} & \underline{40.18 $\pm$ 5.00} & \underline{82.36 $\pm$ 3.61} & \underline{-0.78 $\pm$ 11.42} \\ 
+\midrule
+\midrule
+RETAIN & 96.49 $\pm$ 2.05 & 97.84 $\pm$ 1.44 & 82.59 $\pm$ 12.29 & 54.54 $\pm$ 7.97 & 85.02 $\pm$ 3.93 & 7.32 $\pm$ 10.67 \\ 
+RETAIN-TA & \underline{95.99 $\pm$ 2.42} & 97.82 $\pm$ 1.51 & \underline{82.85 $\pm$ 11.36} & 54.30 $\pm$ 6.50 & \underline{85.43 $\pm$ 2.81} & \underline{9.00 $\pm$ 7.66} \\ 
+StageNet & 95.71 $\pm$ 3.77 & 97.27 $\pm$ 2.38 & 77.44 $\pm$ 12.52 & 56.57 $\pm$ 6.82 & 87.09 $\pm$ 3.54 & 23.93 $\pm$ 9.26 \\ 
+StageNet-TA & \underline{95.79 $\pm$ 3.86} & \underline{97.32 $\pm$ 2.41} & \underline{78.88 $\pm$ 12.29} & \underline{58.19 $\pm$ 6.48} & \underline{88.18 $\pm$ 2.82} & \textbf{\underline{24.55 $\pm$ 9.32}} \\ 
+Dr.Agent & 97.22 $\pm$ 2.44 & 98.00 $\pm$ 1.75 & 85.80 $\pm$ 7.97 & 54.17 $\pm$ 8.92 & 86.76 $\pm$ 3.64 & 17.53 $\pm$ 11.25 \\ 
+Dr.Agent-TA & 97.16 $\pm$ 2.56 & 98.00 $\pm$ 1.97 & \textbf{\underline{86.01 $\pm$ 7.66}} & 53.06 $\pm$ 7.34 & \underline{87.06 $\pm$ 3.30} & \underline{19.35 $\pm$ 9.60} \\ 
+AdaCare & 97.86 $\pm$ 1.09 & 98.53 $\pm$ 0.77 & 78.39 $\pm$ 7.51 & 55.32 $\pm$ 4.45 & 86.59 $\pm$ 1.99 & 17.46 $\pm$ 8.66 \\ 
+AdaCare-TA & \textbf{\underline{98.11 $\pm$ 1.13}} & \textbf{\underline{98.64 $\pm$ 0.89}} & \underline{84.51 $\pm$ 8.17} & \underline{55.62 $\pm$ 5.44} & \underline{87.00 $\pm$ 2.18} & \underline{20.09 $\pm$ 9.86} \\ 
+GRASP & 96.04 $\pm$ 3.15 & 97.30 $\pm$ 2.30 & 81.63 $\pm$ 9.71 & 53.95 $\pm$ 8.37 & 84.44 $\pm$ 4.40 & 15.27 $\pm$ 15.17 \\ 
+GRASP-TA & \underline{96.16 $\pm$ 3.17} & \underline{97.40 $\pm$ 2.21} & \underline{82.82 $\pm$ 9.08} & 53.50 $\pm$ 7.89 & \underline{84.91 $\pm$ 3.73} & \underline{15.61 $\pm$ 13.76} \\ 
+ConCare & 97.01 $\pm$ 2.46 & 97.89 $\pm$ 1.62 & 80.97 $\pm$ 13.66 & 58.59 $\pm$ 6.49 & 87.76 $\pm$ 3.02 & 17.58 $\pm$ 12.34 \\ 
+ConCare-TA & \underline{97.04 $\pm$ 2.51} & \underline{97.94 $\pm$ 1.62} & \underline{82.31 $\pm$ 13.08} & \textbf{\underline{58.68 $\pm$ 7.04}} & \underline{87.96 $\pm$ 3.23} & \underline{20.90 $\pm$ 10.43} \\ 
+\bottomrule
+\end{tabular}}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Benchmarking performance of outcome-specific length-of-stay prediction}
+The benchmarking performances for the task of outcome-specific length-of-stay prediction, under both multi-task and two-stage settings, are presented in Table~\ref{tab:outcome_specific_los_benchmark}. On the \textcolor{blue}{TJH} dataset, the GRU model with two-stage learning achieves the lowest MAE and MSE. Dr.Agent with multi-task learning demonstrates the lowest OSMAE. On the \textcolor{red}{CDSL} dataset, StageNet with two-stage learning achieves the lowest MAE and MSE, while the TCN model with multi-task learning achieves the lowest OSMAE.
+
+
+\begin{table}[htbp]
+    \footnotesize
+    \centering
+    \caption{\textit{Benchmarking performance of outcome-specific length-of-stay prediction}. The reported score is in the form of $mean \pm std$. Subscript $m$ signifies a multi-task learning strategy, while subscript $t$ indicates a two-stage learning strategy. \textbf{Bold} denotes the highest performance. \underline{Underline} indicates that the multi-task setting outperforms the two-stage learning strategy.}
+    \label{tab:outcome_specific_los_benchmark}
+\begin{tabular}{l|ccc|ccc}
+\toprule
+Dataset & \multicolumn{3}{c}{TJH} & \multicolumn{3}{|c}{CDSL} \\
+\midrule
+Metric & MAE ($\downarrow$) & MSE ($\downarrow$) & OSMAE ($\downarrow$) & MAE ($\downarrow$) & MSE ($\downarrow$) & OSMAE ($\downarrow$) \\
+\midrule
+$\text{RF}_t$ & 4.83 $\pm$ 0.53 & 40.94 $\pm$ 8.77 & 6.14 $\pm$ 0.99 & 4.05 $\pm$ 0.13 & 31.30 $\pm$ 4.42 & 4.90 $\pm$ 0.16 \\ 
+$\text{DT}_t$ & 5.07 $\pm$ 0.53 & 50.16 $\pm$ 12.06 & 7.02 $\pm$ 1.33 & 4.11 $\pm$ 0.15 & 32.23 $\pm$ 4.81 & 4.99 $\pm$ 0.14 \\ 
+$\text{GBDT}_t$ & 4.79 $\pm$ 0.53 & 42.03 $\pm$ 9.58 & 5.92 $\pm$ 0.82 & 4.01 $\pm$ 0.14 & 30.74 $\pm$ 4.55 & 4.82 $\pm$ 0.19 \\ 
+$\text{CatBoost}_t$ & 4.71 $\pm$ 0.53 & 39.72 $\pm$ 9.23 & 5.70 $\pm$ 0.85 & 4.01 $\pm$ 0.14 & 30.62 $\pm$ 4.61 & 4.79 $\pm$ 0.17 \\ 
+$\text{XGBoost}_t$ & 4.78 $\pm$ 0.55 & 41.76 $\pm$ 9.47 & 5.77 $\pm$ 0.92 & 4.02 $\pm$ 0.13 & 31.10 $\pm$ 4.42 & 4.81 $\pm$ 0.15 \\ 
+\midrule
+\midrule
+$\text{MLP}_t$ & 5.08 $\pm$ 0.48 & 47.21 $\pm$ 11.10 & 6.34 $\pm$ 0.97 & 4.05 $\pm$ 0.15 & 32.08 $\pm$ 4.96 & 4.80 $\pm$ 0.17 \\ 
+$\text{MLP}_m$ & \underline{4.90 $\pm$ 0.52} & \underline{44.35 $\pm$ 14.00} & 7.26 $\pm$ 2.81 & 4.08 $\pm$ 0.16 & \underline{31.54 $\pm$ 4.53} & 4.86 $\pm$ 0.21 \\ 
+$\text{RNN}_t$ & 4.57 $\pm$ 0.48 & 39.82 $\pm$ 10.02 & 5.54 $\pm$ 1.30 & 3.90 $\pm$ 0.22 & 30.66 $\pm$ 5.58 & 4.37 $\pm$ 0.26 \\ 
+$\text{RNN}_m$ & 4.68 $\pm$ 0.49 & 40.21 $\pm$ 9.29 & \underline{5.46 $\pm$ 1.43} & \underline{3.87 $\pm$ 0.14} & \underline{29.52 $\pm$ 4.98} & 4.43 $\pm$ 0.18 \\ 
+$\text{LSTM}_t$ & 4.49 $\pm$ 0.63 & 37.38 $\pm$ 12.64 & 4.88 $\pm$ 1.30 & 3.81 $\pm$ 0.16 & 29.29 $\pm$ 4.88 & 4.34 $\pm$ 0.23 \\ 
+$\text{LSTM}_m$ & \underline{4.46 $\pm$ 0.60} & 39.24 $\pm$ 10.30 & 5.53 $\pm$ 1.86 & 3.85 $\pm$ 0.13 & 30.13 $\pm$ 4.22 & 4.40 $\pm$ 0.19 \\ 
+$\text{GRU}_t$ & \textbf{4.33 $\pm$ 0.49} & \textbf{35.10 $\pm$ 9.61} & 5.16 $\pm$ 1.31 & 3.75 $\pm$ 0.18 & 28.90 $\pm$ 4.68 & 4.34 $\pm$ 0.32 \\ 
+$\text{GRU}_m$ & 4.80 $\pm$ 0.48 & 41.78 $\pm$ 9.49 & 5.38 $\pm$ 1.09 & 3.98 $\pm$ 0.18 & 32.14 $\pm$ 4.31 & 4.55 $\pm$ 0.22 \\ 
+$\text{TCN}_t$ & 4.69 $\pm$ 0.60 & 43.29 $\pm$ 13.27 & 5.77 $\pm$ 0.92 & 3.75 $\pm$ 0.17 & 29.48 $\pm$ 4.78 & 4.31 $\pm$ 0.15 \\ 
+$\text{TCN}_m$ & 4.79 $\pm$ 0.55 & \underline{41.56 $\pm$ 9.73} & \underline{5.52 $\pm$ 0.85} & 3.80 $\pm$ 0.16 & \underline{29.45 $\pm$ 4.47} & \underline{\textbf{4.22 $\pm$ 0.18}} \\ 
+$\text{Transformer}_t$ & 5.04 $\pm$ 0.43 & 43.88 $\pm$ 7.22 & 5.96 $\pm$ 1.62 & 3.98 $\pm$ 0.20 & 32.35 $\pm$ 5.61 & 5.19 $\pm$ 0.19 \\ 
+$\text{Transformer}_m$ & 5.06 $\pm$ 0.46 & 46.02 $\pm$ 11.63 & 6.61 $\pm$ 1.57 & 4.00 $\pm$ 0.20 & \underline{32.02 $\pm$ 4.68} & \underline{5.13 $\pm$ 0.19} \\ 
+\midrule
+\midrule
+$\text{RETAIN}_t$ & 4.64 $\pm$ 0.61 & 41.22 $\pm$ 14.45 & 4.77 $\pm$ 1.18 & 3.83 $\pm$ 0.16 & 30.56 $\pm$ 5.99 & 4.41 $\pm$ 0.26 \\ 
+$\text{RETAIN}_m$ & \underline{4.62 $\pm$ 0.55} & \underline{40.06 $\pm$ 10.34} & 5.03 $\pm$ 0.96 & 3.84 $\pm$ 0.20 & \underline{29.92 $\pm$ 4.48} & 4.41 $\pm$ 0.30 \\ 
+$\text{StageNet}_t$ & 4.60 $\pm$ 0.76 & 41.70 $\pm$ 14.21 & 5.59 $\pm$ 1.33 & \textbf{3.72} $\pm$ 0.15 & \textbf{28.81 $\pm$ 4.57} & 4.33 $\pm$ 0.22 \\ 
+$\text{StageNet}_m$ & \underline{4.49 $\pm$ 0.42} & \underline{39.55 $\pm$ 8.52} & 7.10 $\pm$ 1.74 & 3.78 $\pm$ 0.18 & 29.93 $\pm$ 4.50 & \underline{4.28 $\pm$ 0.19} \\ 
+$\text{Dr.Agent}_t$ & 4.61 $\pm$ 0.58 & 40.85 $\pm$ 12.12 & 4.93 $\pm$ 1.14 & 3.80 $\pm$ 0.18 & 29.70 $\pm$ 4.96 & 4.46 $\pm$ 0.27 \\ 
+$\text{Dr.Agent}_m$ & \underline{4.41 $\pm$ 0.58} & \underline{37.55 $\pm$ 11.38} & \underline{\textbf{4.75 $\pm$ 1.11}} & 3.82 $\pm$ 0.19 & \underline{29.45 $\pm$ 4.70} & 4.49 $\pm$ 0.28 \\ 
+$\text{AdaCare}_t$ & 4.55 $\pm$ 0.61 & 39.67 $\pm$ 11.35 & 5.08 $\pm$ 0.62 & 3.80 $\pm$ 0.15 & 29.07 $\pm$ 4.57 & 4.42 $\pm$ 0.15 \\ 
+$\text{AdaCare}_m$ & \underline{4.41 $\pm$ 0.63} & \underline{38.86 $\pm$ 10.75} & 5.24 $\pm$ 0.98 & 3.81 $\pm$ 0.16 & 32.05 $\pm$ 4.27 & 4.43 $\pm$ 0.18 \\ 
+$\text{GRASP}_t$ & 4.57 $\pm$ 0.43 & 40.65 $\pm$ 11.46 & 5.51 $\pm$ 1.13 & 3.84 $\pm$ 0.16 & 29.95 $\pm$ 5.06 & 4.43 $\pm$ 0.25 \\ 
+$\text{GRASP}_m$ & \underline{4.44 $\pm$ 0.50} & \underline{37.79 $\pm$ 10.27} & \underline{5.31 $\pm$ 1.31} & 3.89 $\pm$ 0.12 & 30.01 $\pm$ 4.33 & 4.49 $\pm$ 0.28 \\ 
+$\text{ConCare}_t$ & 4.69 $\pm$ 0.52 & 40.26 $\pm$ 11.13 & 5.29 $\pm$ 1.31 & 3.81 $\pm$ 0.17 & 30.16 $\pm$ 5.03 & 4.29 $\pm$ 0.23 \\ 
+$\text{ConCare}_m$ & \underline{4.67 $\pm$ 0.56} & 40.42 $\pm$ 10.77 & \underline{5.27 $\pm$ 1.35} & 3.85 $\pm$ 0.11 & \underline{29.15 $\pm$ 3.90} & 4.46 $\pm$ 0.24 \\ 
+\bottomrule
+\end{tabular}
+\vskip -1em
+\end{table}
