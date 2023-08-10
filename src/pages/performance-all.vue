@@ -102,7 +102,12 @@ function onBack() {
         </template>
       </el-page-header>
     </div>
-
+    <div class="banner">
+      To submit your scores to the leaderboard or engage with the benchmark, please reach out to us at
+      <a href="mailto:yhzhu99@gmail.com"> yhzhu99@gmail.com </a>.
+      <br>
+      We'll promptly review your solutions and update the leaderboard accordingly.
+    </div>
     <el-table
       :data="tableData"
       stripe

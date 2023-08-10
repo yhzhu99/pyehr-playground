@@ -9,3 +9,17 @@ body,
 html.dark {
   background: #121212;
 }
+.banner{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #606266;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  border-left: 6px solid #409eff;
+  background-color: #ecf5ff;
+}
+.banner a{
+  color: #409eff;
+}

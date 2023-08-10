@@ -102,13 +102,18 @@ function onBack() {
         </template>
       </el-page-header>
     </div>
-
+    <div class="banner">
+      To submit your scores to the leaderboard or engage with the benchmark, please reach out to us at
+      <a href="mailto:yhzhu99@gmail.com"> yhzhu99@gmail.com </a>.
+      <br>
+      We'll promptly review your solutions and update the leaderboard accordingly.
+    </div>
     <el-table
       :data="tableData"
       stripe
       size="small"
       border
-      style="width: 100%"
+      class="table"
       @row-dblclick="showConfig"
     >
       <el-table-column
@@ -215,10 +220,14 @@ function onBack() {
   </div>
 </template>
 
-<!-- <style scoped>
-.pagination-container {
+<style scoped>
+/* .pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+} */
+.table {
+  width: 100%;
+  margin-top: 20px;
 }
-</style> -->
+</style>
