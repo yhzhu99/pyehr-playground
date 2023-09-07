@@ -1,88 +1,53 @@
-<p align='center'>
-  <img src='https://user-images.githubusercontent.com/11247099/111864893-a457fd00-899e-11eb-9f05-f4b88987541d.png' alt='Vitesse - Opinionated Vite Starter Template' width='600'/>
-</p>
+# COVID-19 EHR Benchmark - Online Platform
 
-<h6 align='center'>
-<a href="https://vitesse-lite.netlify.app/">Live Demo</a>
-</h6>
+The repository is a practical implementation of the arXiv paper: ["A Comprehensive Benchmark for COVID-19 Predictive Modeling Using Electronic Health Records in Intensive Care"](https://doi.org/10.48550/arxiv.2209.07805) authored by Junyi Gao*, Yinghao Zhu*, Wenqing Wang*, Yasha Wang, Wen Tang, Ewen M. Harrison, and Liantao Ma.
+*\*Equal contribution*
 
-<h5 align='center'>
-<b>Lightweight version of <a href="https://github.com/antfu/vitesse">Vitesse</a></b>
-</h5>
+## Introduction
 
-<br>
-
-<p align='center'>
-<b>English</b> | <a href="https://github.com/antfu/vitesse-lite/blob/main/README.zh-CN.md">简体中文</a>
-<!-- Contributors: Thanks for geting interested, however we DON'T accept new transitions to the README, thanks. -->
-</p>
+The COVID-19 EHR Benchmark is a comprehensive platform for predictive modeling using Electronic Health Records (EHR) in Intensive Care Units (ICUs). This benchmarking effort is the first of its kind for patient-level COVID-19 prediction tasks in ICUs. The main goal is to provide a reliable and standardized benchmark for researchers and practitioners in the field.
 
 ## Features
 
-- ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite 3](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
+- **Performance Table**: Provides the average score across all folds. [View Here](https://pyehr.netlify.app/performance-10fold)
+- **Detailed Performance Table**: Includes comprehensive performance details for each fold. [View Here](https://pyehr.netlify.app/performance-all)
+- **Checkpoints & Logs**: Access all model checkpoints and logs. [Access via Google Drive](https://drive.google.com/file/d/1Fdt8XUnO3CeJk9mrkPZBk_gUdpCnGFfi/view)
 
-- 🗂 [File based routing](./src/pages)
+## Background
 
-- 📦 [Components auto importing](./src/components)
+To the best of our knowledge, this is the first benchmarking effort for patient-level COVID-19 prediction tasks in ICUs. We have made our code publicly available, enabling others to build complete benchmarks and reproduce all results. Our well-structured data preprocessing and modeling modules can also be easily applied to generate customized tasks and results. The benchmark code and documentations can be accessed at [GitHub Repository](https://github.com/yhzhu99/pyehr). Moreover, we have released all the benchmark experiment results and trained models on this online platform, which includes model performances with all hyperparameter combinations for both tasks and makes the results easy to query and download. Further details on data and code availability, including the benchmark code structure, are provided in Supplementary Materials.
 
-- 🎨 [UnoCSS](https://github.com/antfu/unocss) - The instant on-demand atomic CSS engine.
+## Access
 
-- 😃 Use icons from any icon sets in [Pure CSS](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
+The platform can be accessed at [https://pyehr.netlify.app](https://pyehr.netlify.app).
 
-- 🔥 Use the [new `<script setup>` style](https://github.com/vuejs/rfcs/pull/227)
+## License
 
-- ✅ Use [Vitest](http://vitest.dev/) for unit and components testing
+This project is licensed under the terms of the MIT license. See [LICENSE](LICENSE) for additional details.
 
-- 🦾 TypeScript, of course
+## Contributors
 
-- ☁️ Deploy on Netlify, zero-config
+This project is brought to you by the following contributors:
+
+- [Yinghao Zhu](https://github.com/yhzhu99)
+- [Wenqing Wang](https://github.com/ericaaaaaaaa)
+- [Junyi Gao](https://github.com/v1xerunt)
+- [Hao Li](https://github.com/LLLeoLi)
 
 
-<br>
+For a deeper dive into our research, please refer to our [paper](https://doi.org/10.48550/arxiv.2209.07805).
 
-See [Vitesse](https://github.com/antfu/vitesse) for full featureset.
-
-
-## Dropped Features from [Vitesse](https://github.com/antfu/vitesse)
-
-- ~~i18n~~
-- ~~Layouts~~
-- ~~SSG~~
-- ~~PWA~~
-- ~~Markdown~~
-
-## Pre-packed
-
-### UI Frameworks
-
-- [UnoCSS](https://github.com/antfu/unocss) - The instant on-demand atomic CSS engine.
-
-### Icons
-
-- [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/)
-- [Pure CSS Icons via UnoCSS](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
-
-### Plugins
-
-- [Vue Router](https://github.com/vuejs/vue-router)
-  - [`vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - file system based routing
-- [`unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - Directly use Vue Composition API and others without importing
-- [`unplugin-vue-components`](https://github.com/antfu/unplugin-vue-components) - components auto import
-- [`unplugin-vue-macros`](https://github.com/sxzz/unplugin-vue-macros) - Explore and extend more macros and syntax sugar to Vue.
-- [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
-
-## Try it now!
-
-### GitHub Template
-
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse-lite/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
-```bash
-npx degit antfu/vitesse-lite my-vitesse-app
-cd my-vitesse-app
-pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 ```
+@misc{gao2023comprehensive,
+      title={A Comprehensive Benchmark for COVID-19 Predictive Modeling Using Electronic Health Records in Intensive Care}, 
+      author={Junyi Gao and Yinghao Zhu and Wenqing Wang and Yasha Wang and Wen Tang and Ewen M. Harrison and Liantao Ma},
+      year={2023},
+      eprint={2209.07805},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
+
+## Contribution
+
+We welcome contributions from the community. If you find any issues or have suggestions, please raise them in the GitHub repository.
